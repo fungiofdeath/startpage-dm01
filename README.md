@@ -4,6 +4,10 @@ A simple startpage. See a live version [here](https://fungiofdeath.github.io/sta
 
 ![screenshot](screenshot.png)
 
+Font used is [IBM Plex Sans Condensed](https://fonts.google.com/featured/Plex).
+
+Inspiration and other startpages found [here](https://startpages.github.io/) or by searching [/wg/](https://boards.4chan.org/wg/catalog#s=startpage) for startpage threads. 
+
 ## Installation
 Clone this repo via
 ```
