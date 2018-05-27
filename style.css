@@ -1,0 +1,195 @@
+:root {
+	/** Entire Page **/
+	/*020003*/
+	--font-stack: "IBM Plex Sans Condensed", "Helvetica Neue", Helvetica, Verdana, "Arial Narrow", sans-serif;
+	--content-max-width: 75%;
+	--vertical-margins: 3em;
+	
+	--default-text-color: #ffffff;
+	--default-text-size: 17pt;
+	--category-width: 15%;
+	--line-height: 1.5em;
+	
+	--background-image: url("80s-2.jpg");
+	
+	/** Header **/
+	--head-text-color:          #00c7ce;
+	--head-text-shadow-color:   #8f006b;
+	--head-text-shadow-color-2: #dfc800;
+	
+	/** Main Body **/
+	/* Borders */
+	--category-upper-shadow-color: #da00bd;
+	--category-lower-shadow-color: #187900;
+	--category-upper-border-color: #187900;
+	--category-lower-border-color: #da00bd;
+	--category-full-shadow-color:  #0f000d;
+	
+	/* Other */
+	--category-background-color:   #020000;
+	
+	/* Text */
+	--category-head-text-color:        #00df30;
+	--category-head-text-shadow-color: #5f0148;
+	--category-head-border-color:      #001572;
+	
+	--link-color:                  #009eb3;
+	--link-shadow-color:           #540072;
+	--link-hover-text-color:       #0e0029;
+	--link-hover-background-color: #dfc800;
+	--link-hover-shadow-color:     #910089;
+	
+	/** Footer **/
+}
+
+@keyframes clock {
+	50% {
+		opacity: 0;
+	}
+}
+
+* {
+	margin: 0px;
+	padding: 0px;
+	box-sizing: border-box;
+	-moz-user-select: -moz-none;
+	-khtml-user-select: none;
+	-webkit-user-select: none;
+	-o-user-select: none;
+	user-select: none;
+}
+html {
+	width: 100%;
+	height: 100%;
+}
+body {
+	max-width: var(--content-max-width);
+	margin: var(--vertical-margins) auto;
+	
+	font-family: var(--font-stack);
+	font-size: var(--default-text-size);
+	color: var(--default-text-color);
+	line-height: var(--line-height);
+}
+#background {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	top: 0%;
+	left: 0%;
+	z-index: -100;
+	background-image: var(--background-image);
+	background-position: center;
+	background-size: cover;
+}
+header {
+	position: relative;
+}
+header h1 {
+	color: var(--head-text-color);
+	text-shadow: 2px 2px var(--head-text-shadow-color);
+	text-align: center;
+}
+div#liveClock {
+	position: absolute;
+	right: 0px;
+	top: 0px;
+	display: inline;
+}
+div#liveClock span {
+	animation: clock 3s linear infinite;
+}
+
+#content {
+	text-align: center;
+}
+.category {
+	margin: 0px 1em;
+	margin-top: 2em;
+	min-width: var(--category-width);
+	display: inline-block;
+	vertical-align: top;
+	background-color: var(--category-background-color);
+	
+	box-shadow: 
+		-3px -3px 0px var(--category-upper-shadow-color),
+		3px 3px 0px var(--category-lower-shadow-color),
+		15px 15px 0px var(--category-full-shadow-color);
+	border-top: 2px solid var(--category-upper-border-color);
+	border-left: 2px solid var(--category-upper-border-color);
+	border-right: 2px solid var(--category-lower-border-color);
+	border-bottom: 2px solid var(--category-lower-border-color);
+}
+.category h2 {
+	color: var(--category-head-text-color);
+	border-bottom: 3px solid var(--category-head-border-color);
+	text-shadow: 2px 2px var(--category-head-text-shadow-color);
+	padding: 5px;
+}
+
+.sitelist {
+	list-style: none;
+}
+.sitelist li {
+	position: relative;
+}
+.sitelist li a {
+	text-decoration: none;
+	color: var(--link-color);
+	text-shadow: 2px 2px var(--link-shadow-color);
+}
+.sitelist li a:hover {
+	color: var(--link-hover-text-color);
+	text-shadow: 2px 2px var(--link-hover-shadow-color);
+}
+.site {
+	display: inline-block;
+	padding: 0px 5px;
+	width: 100%;
+}
+.site:hover {
+	background-color: var(--link-hover-background-color);
+}
+.rbtn {
+	background-color: var(--category-background-color);
+	width: var(--line-height);
+	display: inline-block;
+	position: absolute;
+	right: 0px;
+}
+.rbtn:hover {
+	background-color: var(--link-hover-background-color);
+}
+.rbtn ~ .site {
+	padding: 0px calc(var(--line-height) + 5px);
+}
+
+.aside {
+	display: inline-block;
+	position: absolute;
+	left: 100%;
+	top: 0%;
+	width: 250px;
+	z-index: 15;
+	
+	background-color: var(--category-background-color);
+	box-shadow:
+		-3px -3px 0px var(--category-upper-border-color),
+		3px 3px 0px var(--category-lower-border-color);
+	border-top: 2px solid var(--category-lower-border-color);
+	border-left: 2px solid var(--category-lower-border-color);
+	border-right: 2px solid var(--category-upper-border-color);
+	border-bottom: 2px solid var(--category-upper-border-color);
+}
+
+.hidden {
+	height: 0px;
+	width: 0px;
+	margin: 0px;
+	padding: 0px;
+	display: none;
+}
+
+.site, .rbtn {
+	cursor: pointer;
+}
