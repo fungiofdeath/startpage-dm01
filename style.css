@@ -36,8 +36,8 @@
 	--link-color:                  #01a0c9;
 	--link-shadow-color:           #540072;
 	--link-hover-text-color:       #0e0029;
-	--link-hover-background-color: #dfc800;
-	--link-hover-shadow-color:     #910089;
+	--link-hover-background-color: #cf00b4 ;
+	--link-hover-shadow-color:     #b3009b;
 	
 	/** Footer **/
 }
@@ -160,8 +160,8 @@ div#liveClock span {
 .site:hover {
 	background-color: var(--link-hover-background-color);
 }
-.rbtn {
-	background-color: var(--category-background-color);
+.rbtn {/*
+	background-color: var(--category-background-color);*/
 	width: var(--line-height);
 	display: inline-block;
 	position: absolute;
