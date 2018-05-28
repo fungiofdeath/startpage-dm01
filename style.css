@@ -29,11 +29,11 @@
 	--category-background-color:   #020000;
 	
 	/* Text */
-	--category-head-text-color:        #00df30;
-	--category-head-text-shadow-color: #5f0148;
+	--category-head-text-color:        #ff31b0;
+	--category-head-text-shadow-color: #004a61;
 	--category-head-border-color:      #001572;
 	
-	--link-color:                  #009eb3;
+	--link-color:                  #01a0c9;
 	--link-shadow-color:           #540072;
 	--link-hover-text-color:       #0e0029;
 	--link-hover-background-color: #dfc800;
@@ -61,6 +61,10 @@
 html {
 	width: 100%;
 	height: 100%;
+	
+	background-image: var(--background-image);
+	background-position: center;
+	background-size: cover;
 }
 body {
 	max-width: var(--content-max-width);
@@ -78,9 +82,8 @@ body {
 	top: 0%;
 	left: 0%;
 	z-index: -100;
-	background-image: var(--background-image);
-	background-position: center;
-	background-size: cover;
+	
+	background-color: #0000006b;
 }
 header {
 	position: relative;
@@ -125,6 +128,10 @@ div#liveClock span {
 	border-bottom: 3px solid var(--category-head-border-color);
 	text-shadow: 2px 2px var(--category-head-text-shadow-color);
 	padding: 5px;
+	
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	font-size: 1.25em;
 }
 
 .sitelist {
@@ -137,6 +144,9 @@ div#liveClock span {
 	text-decoration: none;
 	color: var(--link-color);
 	text-shadow: 2px 2px var(--link-shadow-color);
+}
+.sitelist li:last-child a {
+	padding-bottom: 5px;
 }
 .sitelist li a:hover {
 	color: var(--link-hover-text-color);
