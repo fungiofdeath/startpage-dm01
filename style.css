@@ -167,6 +167,9 @@ div#liveClock span {
 	position: absolute;
 	right: 0px;
 }
+.sitelist li:hover .rbtn {
+	color: var(--link-hover-text-color);
+}
 .rbtn:hover {
 	background-color: var(--link-hover-background-color);
 }
