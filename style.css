@@ -14,9 +14,6 @@
 	
 	/** Main Body **/
 	--content-max-width: 75%;
-	/* Actually used to determine header height but seems more sensible
-	 * here
-	 */
 	--vertical-margins: 3em;
 	
 	/* Borders */
@@ -43,6 +40,20 @@
 	--link-hover-shadow-color:     #bd00ad;
 	
 	/** Footer **/
+	--searchbar-background-color: #020000;
+	--searchbar-width: 75%;
+	
+	/* Text */
+	--searchbar-text-size: 1.25em;
+	--searchbar-text-color: #01a0c9;
+	--searchbar-text-shadow-color: #540072;
+	
+	/* Borders */
+	--searchbar-upper-shadow-color: #da00bd;
+	--searchbar-lower-shadow-color: #187900;
+	--searchbar-upper-border-color: #187900;
+	--searchbar-lower-border-color: #da00bd;
+	--searchbar-full-shadow-color:  #0f000d;
 }
 
 @keyframes clock {
@@ -102,6 +113,9 @@ div#liveClock span {
 #content {
 	width: var(--content-max-width);
 	margin: 0 auto;
+	/* This padding ensures that the footer doesnt overlap
+	 * with content
+	 */
 	padding-bottom: 5em;
 	
 	text-align: center;
@@ -141,8 +155,8 @@ div#liveClock span {
 	font-size: 1.25em;
 	
 	color: var(--category-head-text-color);
-	border-bottom: 3px solid var(--category-head-border-color);
 	text-shadow: 2px 2px var(--category-head-text-shadow-color);
+	border-bottom: 3px solid var(--category-head-border-color);
 }
 
 /* Rows */
@@ -211,6 +225,32 @@ footer h1 {
 	display: inline-block;
 	color: var(--foot-text-color);
 	text-shadow: 2px 2px var(--foot-text-shadow-color);
+}
+footer form {
+	width: var(--searchbar-width);
+	margin: 0 auto;
+	padding: .25em;
+	
+	background-color: var(--searchbar-background-color);
+	box-shadow: 
+		-3px -3px 0px var(--searchbar-upper-shadow-color),
+		3px 3px 0px var(--searchbar-lower-shadow-color),
+		15px 15px 0px var(--searchbar-full-shadow-color);
+	border-top: 2px solid var(--searchbar-upper-border-color);
+	border-left: 2px solid var(--searchbar-upper-border-color);
+	border-right: 2px solid var(--searchbar-lower-border-color);
+	border-bottom: 2px solid var(--searchbar-lower-border-color);
+}
+#search {
+	width: var(--searchbar-width);
+	border: 0;
+	
+	color: var(--searchbar-text-color);
+	text-shadow: 2px 2px var(--searchbar-text-shadow-color);
+	font-size: var(--searchbar-text-size);
+	text-align: center;
+	
+	background-color: #00000000;
 }
 
 /** Misc **/
