@@ -242,7 +242,7 @@ footer form {
 	border-bottom: 2px solid var(--searchbar-lower-border-color);
 }
 #search {
-	width: var(--searchbar-width);
+	width: 100%;
 	border: 0;
 	
 	color: var(--searchbar-text-color);
