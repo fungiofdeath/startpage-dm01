@@ -116,7 +116,7 @@ div#liveClock span {
 	/* This padding ensures that the footer doesnt overlap
 	 * with content
 	 */
-	padding-bottom: 5em;
+	padding-bottom: 6em;
 	
 	text-align: center;
 }
