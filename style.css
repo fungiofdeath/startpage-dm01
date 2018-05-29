@@ -1,13 +1,9 @@
 :root {
 	/** Entire Page **/
-	/*020003*/
 	--font-stack: "IBM Plex Sans Condensed", "Helvetica Neue", Helvetica, Verdana, "Arial Narrow", sans-serif;
-	--content-max-width: 75%;
-	--vertical-margins: 3em;
 	
 	--default-text-color: #ffffff;
 	--default-text-size: 17pt;
-	--category-width: 15%;
 	--line-height: 1.5em;
 	
 	--background-image: url("80s-2.jpg");
@@ -15,9 +11,14 @@
 	/** Header **/
 	--head-text-color:          #00c7ce;
 	--head-text-shadow-color:   #8f006b;
-	--head-text-shadow-color-2: #dfc800;
 	
 	/** Main Body **/
+	--content-max-width: 75%;
+	/* Actually used to determine header height but seems more sensible
+	 * here
+	 */
+	--vertical-margins: 3em;
+	
 	/* Borders */
 	--category-upper-shadow-color: #da00bd;
 	--category-lower-shadow-color: #187900;
@@ -26,13 +27,15 @@
 	--category-full-shadow-color:  #0f000d;
 	
 	/* Other */
+	--category-width: 15%;
 	--category-background-color:   #020000;
 	
-	/* Text */
+	/* Category Headers */
 	--category-head-text-color:        #00c42a;
 	--category-head-text-shadow-color: #004a61;
 	--category-head-border-color:      #001572;
 	
+	/* Links */
 	--link-color:                  #01a0c9;
 	--link-shadow-color:           #540072;
 	--link-hover-text-color:       #0e0029;
@@ -40,9 +43,6 @@
 	--link-hover-shadow-color:     #bd00ad;
 	
 	/** Footer **/
-	--foot-text-color:          #1f0042;
-	--foot-text-shadow-color:   #8f006b;
-	--foot-text-shadow-color-2: #dfc800;
 }
 
 @keyframes clock {
@@ -51,6 +51,7 @@
 	}
 }
 
+/** Entire Page **/
 * {
 	margin: 0px;
 	padding: 0px;
@@ -71,12 +72,13 @@ body {
 	min-width: 100%;
 	position: relative;
 	
+	color: var(--default-text-color);
 	font-family: var(--font-stack);
 	font-size: var(--default-text-size);
-	color: var(--default-text-color);
 	line-height: var(--line-height);
 }
 
+/** Header **/
 header {
 	position: relative;
 	height: var(--vertical-margins);
@@ -84,7 +86,6 @@ header {
 header h1 {
 	color: var(--head-text-color);
 	text-shadow: 2px 2px var(--head-text-shadow-color);
-	text-align: center;
 }
 div#liveClock {
 	position: absolute;
@@ -96,6 +97,8 @@ div#liveClock span {
 	animation: clock 3s linear infinite;
 }
 
+/** Main Body **/
+/* Columns */
 #content {
 	width: var(--content-max-width);
 	margin: 0 auto;
@@ -103,13 +106,23 @@ div#liveClock span {
 	
 	text-align: center;
 }
+.aside {
+	min-width: 5em;
+	display: inline-block;
+	
+	position: absolute;
+	left: 100%;
+	top: 0%;
+	z-index: 15;
+}
 .category {
 	min-width: var(--category-width);
 	margin: 0px 1em;
 	margin-top: 2em;
 	display: inline-block;
 	vertical-align: top;
-	
+}
+.category, .aside {
 	background-color: var(--category-background-color);
 	box-shadow: 
 		-3px -3px 0px var(--category-upper-shadow-color),
@@ -132,80 +145,59 @@ div#liveClock span {
 	text-shadow: 2px 2px var(--category-head-text-shadow-color);
 }
 
-.sitelist {
-	list-style: none;
-}
+/* Rows */
 .sitelist li {
 	position: relative;
-}
-.sitelist li a {
-	text-decoration: none;
-	color: var(--link-color);
-	text-shadow: 2px 2px var(--link-shadow-color);
+	list-style-type: none;
 }
 .sitelist li:last-child a {
 	padding-bottom: 5px;
 }
-.sitelist li a:hover {
-	color: var(--link-hover-text-color);
-	text-shadow: 2px 2px var(--link-hover-shadow-color);
-}
+
 .site {
-	display: inline-block;
 	padding: 0px 5px;
 	width: 100%;
 }
-.site:hover {
-	background-color: var(--link-hover-background-color);
-}
-.rbtn {/*
-	background-color: var(--category-background-color);*/
+.rbtn {
 	width: var(--line-height);
-	display: inline-block;
 	position: absolute;
 	right: 0px;
+	
+	/* Prevents the background color of the chevron from changing
+	 * when the link to its left is selected. It may look ugly, but
+	 * it seems that (barring js hacks) this is the best way to handle
+	 * hovering.
+	 * 
+	 * If the order of links and buttons could be fixed, then this can
+	 * be removed as proper handling of hovering would then be possible.
+	 */
+	background-color: var(--category-background-color);
 }
-.sitelist li:hover .rbtn {
+.site, .rbtn {
+	display: inline-block;
+	cursor: pointer;
+	
+	color: var(--link-color);
+	text-decoration: none;
+	text-shadow: 2px 2px var(--link-shadow-color);
+}
+.site:hover, .rbtn:hover {
 	color: var(--link-hover-text-color);
-}
-.rbtn:hover {
+	text-shadow: 2px 2px var(--link-hover-shadow-color);
 	background-color: var(--link-hover-background-color);
 }
 .rbtn ~ .site {
+	/* This prevents buttons from overlapping the link text. However,
+	 * in order to do this, the button and link must be created out
+	 * of order so that the `~` selector can select the link. When
+	 * css4 comes around, if it includes `:has()`, then the order can
+	 * be fixed.
+	 */
 	padding: 0px calc(var(--line-height) + 5px);
 }
 
-.aside {
-	display: inline-block;
-	position: absolute;
-	left: 100%;
-	top: 0%;
-	width: 250px;
-	z-index: 15;
-	
-	background-color: var(--category-background-color);
-	box-shadow:
-		-3px -3px 0px var(--category-upper-border-color),
-		3px 3px 0px var(--category-lower-border-color);
-	border-top: 2px solid var(--category-lower-border-color);
-	border-left: 2px solid var(--category-lower-border-color);
-	border-right: 2px solid var(--category-upper-border-color);
-	border-bottom: 2px solid var(--category-upper-border-color);
-}
 
-.hidden {
-	height: 0px;
-	width: 0px;
-	margin: 0px;
-	padding: 0px;
-	display: none;
-}
-
-.site, .rbtn {
-	cursor: pointer;
-}
-
-
+/** Footer **/
 footer {
 	position: absolute;
 	bottom: 0px;
@@ -221,6 +213,14 @@ footer h1 {
 	text-shadow: 2px 2px var(--foot-text-shadow-color);
 }
 
+/** Misc **/
+.hidden {
+	height: 0px;
+	width: 0px;
+	margin: 0px;
+	padding: 0px;
+	display: none;
+}
 .overlay {
 	height: 100%;
 	width: 100%;

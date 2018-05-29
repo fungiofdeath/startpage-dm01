@@ -1,26 +1,5 @@
 var lastClicked = null;
 
-document.addEventListener("click", (e) => {
-	if (lastClicked && !e.target.classList.contains("rbtn"))
-	{
-		lastClicked.classList.add("hidden");
-	}
-});
-
-function readFile(path, mime, callback)
-{
-	var req = new XMLHttpRequest();
-	req.onreadystatechange = () => {
-		if (req.readyState == 4 && req.status == "200")
-		{
-			callback(req.responseText);
-		}
-	};
-	req.overrideMimeType(mime);
-	req.open("GET", path, true);
-	req.send(null);
-}
-
 function populateList(list, siteList)
 {
 	siteList.forEach((site, i) => {
@@ -80,6 +59,19 @@ function addNewCategory(name, siteList)
 
 ///
 
+function readFile(path, mime, callback)
+{
+	var req = new XMLHttpRequest();
+	req.onreadystatechange = () => {
+		if (req.readyState == 4 && req.status == "200")
+		{
+			callback(req.responseText);
+		}
+	};
+	req.overrideMimeType(mime);
+	req.open("GET", path, true);
+	req.send(null);
+}
 function populate()
 {
 	readFile("./sites.json", "application/json", (text) => {
@@ -89,5 +81,12 @@ function populate()
 		});
 	});
 }
+
+document.addEventListener("click", (e) => {
+	if (lastClicked && !e.target.classList.contains("rbtn"))
+	{
+		lastClicked.classList.add("hidden");
+	}
+});
 
 populate();
