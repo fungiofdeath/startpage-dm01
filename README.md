@@ -16,16 +16,28 @@ git clone https://github.com/FungiOfDeath/startpage-dm01.git
 
 ### Setting This as your New Tab Page
 
+First set up a webserver hosting the page. Two easy solutions I've used are python and docker (albeit docker is a bit
+overkill, to say the least).
+
+To start a webserver with python on port `<port-number>` whose root is in `<startpage-root>`, use the following script:
+```bash
+python3 -m http.server <port-number> -d <startpage-root> 
+```
+
+To start a webserver with docker, install the [nginx](https://hub.docker.com/_/nginx) image then run the following script:
+```bash
+sudo docker run -d -p <port-number>:80 --restart always -v <startpage-root>:/usr/share/nginx/html:ro nginx
+```
+
+This latter method will automatically start at boot, so you do not need to set that up.
+
 #### Chrome
-I don't know how to do this for chrome so don't ask me.
+No clue ¯\\\_(ツ)\_/¯.
 
 #### Firefox
-See [this](https://support.mozilla.org/en-US/questions/1210576) support article.
 
-tl;dr:
- - Copy [ff/local-settings.js](ff/local-settings.js) to `%PROGRAM_FILES%/mozilla firefox/defaults/prefs/`.
- - In [ff/firefox.cfg](ff/firefox.cfg), set `newTabURL` to point to [index.html](index.html).
- - Copy [ff/firefox.cfg](ff/firefox.cfg) to `%PROGRAM_FILES%/mozilla firefox/`.
+Use the [New Tab Override](https://addons.mozilla.org/en-US/firefox/addon/new-tab-override/?src=search) plugin to set your
+new tab page to `localhost:<port-number>`.
 
 ## Editing
 To change which sites are shown, edit [sites.json](sites.json).
